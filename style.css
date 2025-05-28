@@ -181,53 +181,142 @@ footer {
 
 }
 .ranks-category {
-    grid-column: 1 / -1; /* Занимает всю ширину */
+    grid-column: 1 / -1;
+    padding: 2rem;
 }
 
-.ranks-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 12px;
+.ranks-progression {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.rank-tier {
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.rank-tier::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(108, 92, 231, 0.3), transparent);
+}
+
+.rank-tier:last-child::after {
+    display: none;
 }
 
 .rank-item {
-    background: rgba(255, 255, 255, 0.7);
-    padding: 12px 15px;
-    border-radius: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: transform 0.2s ease;
-    border-left: 4px solid var(--primary);
+    padding: 0.8rem 1rem;
+    margin: 0.2rem 0;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    background: rgba(255, 255, 255, 0.6);
 }
 
 .rank-item:hover {
-    transform: translateX(5px);
     background: rgba(255, 255, 255, 0.9);
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(108, 92, 231, 0.1);
+}
+
+.rank-info {
+    display: flex;
+    flex-direction: column;
 }
 
 .rank-name {
-    font-weight: 500;
+    font-weight: 600;
     color: var(--dark);
+    font-size: 1rem;
 }
 
-.rank-level {
-    font-size: 0.85rem;
-    background: var(--primary);
-    color: white;
-    padding: 3px 8px;
-    border-radius: 12px;
-    font-weight: 600;
+.rank-level-range {
+    font-size: 0.75rem;
+    color: #666;
+    opacity: 0.8;
+}
+
+.rank-visual {
+    width: 40%;
+    max-width: 200px;
+    position: relative;
+}
+
+.rank-bar {
+    height: 8px;
+    border-radius: 4px;
+    background: linear-gradient(to right, #a29bfe, #6c5ce7);
+    transition: width 0.5s ease;
+}
+
+.rank-item.elite {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(253, 121, 168, 0.1));
+}
+
+.rank-item.elite .rank-name {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.rank-item.elite .rank-bar {
+    background: linear-gradient(to right, #fd79a8, #e84393);
 }
 
 @media (max-width: 768px) {
-    .ranks-grid {
-        grid-template-columns: 1fr 1fr;
+    .rank-visual {
+        width: 30%;
+    }
+    
+    .rank-name {
+        font-size: 0.9rem;
     }
 }
+.rank-level-range {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: #666;
+}
 
-@media (max-width: 480px) {
-    .ranks-grid {
-        grid-template-columns: 1fr;
-    }
+.level-pill {
+    background: rgba(108, 92, 231, 0.15);
+    color: var(--primary);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    border: 1px solid rgba(108, 92, 231, 0.3);
+}
+
+.elite-pill {
+    background: rgba(253, 121, 168, 0.15);
+    color: var(--accent);
+    border-color: rgba(253, 121, 168, 0.3);
+}
+
+.rank-item:hover .level-pill {
+    background: rgba(108, 92, 231, 0.25);
+    transform: scale(1.05);
+}
+
+.rank-item:hover .elite-pill {
+    background: rgba(253, 121, 168, 0.25);
+}
+
+/* Увеличиваем отступы для лучшей читаемости */
+.rank-info {
+    gap: 2px;
+}
+
+.rank-name {
+    margin-bottom: 2px;
 }
