@@ -180,3 +180,54 @@ footer {
     }
 
 }
+.ranks-category {
+    grid-column: 1 / -1; /* Занимает всю ширину */
+}
+
+.ranks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+}
+
+.rank-item {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 12px 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s ease;
+    border-left: 4px solid var(--primary);
+}
+
+.rank-item:hover {
+    transform: translateX(5px);
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.rank-name {
+    font-weight: 500;
+    color: var(--dark);
+}
+
+.rank-level {
+    font-size: 0.85rem;
+    background: var(--primary);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .ranks-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .ranks-grid {
+        grid-template-columns: 1fr;
+    }
+}
